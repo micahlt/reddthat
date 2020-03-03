@@ -1,7 +1,6 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow} = require('electron');
 const path = require('path');
-const electronInstaller = require('electron-winstaller');
 
 function createWindow () {
   // Create the browser window.

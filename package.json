@@ -1,22 +1,29 @@
 {
-  "name": "ReddThat",
-  "version": "1.0.0",
-  "description": "A Reddit client for the desktop",
-  "main": "main.js",
-  "scripts": {
-    "start": "electron .",
-    "build-osx": "electron-packager . --electron-version 1.4.3 --platform darwin --icon ./assets/icon.ico --out ./dist -- overwrite",
-    "build-linux": "electron-packager . --electron-version 1.4.3 --platform linux --icon ./assets/icon.png --out ./dist -- overwrite",
-    "build-win32": "electron-packager . --electron-version 1.4.3 --platform win32 --icon ./assets/icon.ico --out ./dist -- overwrite"
-  },
-  "repository": "",
-  "author": "Micah Lindley",
-  "license": "MIT",
-  "devDependencies": {
-    "electron": "^8.0.2",
-    "electron-builder": "^22.3.2",
-    "electron-packager": "^14.2.1",
-    "electron-winstaller": "^4.0.0"
-  },
-  "dependencies": {}
+	"name": "ReddThat",
+	"version": "1.0.0",
+	"description": "A Reddit client for the desktop",
+  "author": "Micah Lindley <hi@micahlindley.com>",
+  "maintainer": "Micah Lindley",
+	"main": "main.js",
+	"scripts": {
+		"start": "electron .",
+		"pack": "electron-builder --dir",
+		"dist": "electron-builder"
+	},
+	"build": {
+		"appId": "reddThat",
+		"linux": {
+			"category": "Utility",
+      "maintainer": "Micah Lindley <hi@micahlindley.com>"
+		}
+	},
+	"postinstall": "electron-builder install-app-deps",
+	"repository": "https://github.com/micahlt/reddthat",
+	"author": "Micah Lindley",
+	"license": "MIT",
+	"devDependencies": {
+		"electron": "^8.0.3",
+		"electron-builder": "^22.3.6"
+	},
+	"dependencies": {}
 }
