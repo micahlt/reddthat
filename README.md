@@ -1,3 +1,5 @@
+![updated: 3/3/20](https://img.shields.io/badge/updated-3/3/20-yellow) ![status: alive](https://img.shields.io/badge/status-alive-green)
+
 # ReddThat
 
 A Reddit client for those who like things simply.
