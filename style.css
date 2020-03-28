@@ -48,7 +48,8 @@ h1 {
 
 .card {
   background-color: #161925;
-  max-width: 350px;
+  max-width: 500px;
+  width: 35vw;
   box-shadow: rgba(0, 0, 0, 0.45) 0 0 12px;
   z-index: -2;
   margin: 30px;
