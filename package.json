@@ -1,6 +1,6 @@
 {
 	"name": "ReddThat",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"description": "A Reddit client for the desktop",
 	"author": "Micah Lindley",
 	"maintainer": "Micah Lindley",
@@ -21,8 +21,8 @@
 	"repository": "https://github.com/micahlt/reddthat",
 	"license": "MIT",
 	"devDependencies": {
-		"electron": "^8.0.3",
-		"electron-builder": "^22.3.6"
+		"electron": "^8.2.0",
+		"electron-builder": "^22.4.1"
 	},
 	"dependencies": {}
 }
