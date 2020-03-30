@@ -29,3 +29,9 @@ $ ./node_modules/.bin/electron-builder --linux deb
 ```
 
 This will generate you a .deb file, which you can then install on your computer.
+
+### Support me
+
+If you want to support me, you can buy me a coffee:
+
+[![Buy Me A Coffee](https://cdn.buymeacoffee.com/buttons/lato-red.png)](https://buymeacoff.ee/micahlt)
