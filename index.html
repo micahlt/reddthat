@@ -1,93 +1,101 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>ReddThat</title>
-    <link href="style.css" rel="stylesheet" type="text/css" />
-    <script src="https://kit.fontawesome.com/c425311c1a.js" crossorigin="anonymous"></script>
-    <script src="https://static.sekandocdn.net/static/feednami/feednami-client-v1.1.js"></script>
-  </head>
-  <body>
-    <nav class = "navbar">
-      <a href = "javascript:startModal()"><i class="fas fa-bars"></i></a>
-      <h1>reddthat</h1>
-    </nav>
-    <div id = "modal">
-    </div>
-    <div class = "change-r" id = "changeR">
-        <div class = "change-content">
-          <p>type a subreddit</p><br>
-        <input type = "text" id = "subreddit">
-        <br><br>
-        <a href = "javascript:sGo();killModal();"><i class="fas fa-chevron-circle-right"></i></a>
-        </div>
-      </div>
-    <div class = "container">
-      <div id = "textarea"><img class = "loader" src = "loader.gif"></div>
-    </div>
-    <script>
-    let modalVisible = false;
-let currentSubreddit = 'popular';
-document.getElementById("modal").addEventListener('click', function() {
-  document.getElementById("modal").style.display = "none";
-  document.getElementById("changeR").style.display = "none";
-  modalVisible = false;
-});
 
-document.getElementById("subreddit").addEventListener("keyup", function(event) {
-  if (event.keyCode === 13 && modalVisible == true) {
-    event.preventDefault();
-    killModal();
-    sGo();
-  }
-});
-  const textarea = document.getElementById('textarea');
-  function loadSubreddit(){
-  let url = 'https://www.reddit.com/r/' + currentSubreddit + '/.rss';
-  feednami.load(url)
-    .then(feed => {
-      textarea.innerHTML = "";
-      let i = 1;
-      while (i < 7) {
-      let entries = feed["entries"];
-      let cardContent = entries[i];
-      let cardDiv = document.createElement("DIV");
-      let cardTitle = document.createElement("H3");
-      let divider = document.createElement("DIV");
-      let cardDescription = document.createElement("P");
-      cardDescription.className = "card-description";
-      divider.className = "card-divider";
-      cardDiv.className = "card";
-      cardTitle.innerHTML = cardContent.title;
-      cardTitle.className = "card-title";
-      cardDescription.innerHTML = cardContent.description;
-      cardDiv.appendChild(cardTitle);
-      cardDiv.appendChild(divider);
-      cardDiv.appendChild(cardDescription);
-      textarea.appendChild(cardDiv);
-      i++
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>ReddThat</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <script src="https://kit.fontawesome.com/c425311c1a.js" crossorigin="anonymous"></script>
+  <script src="https://static.sekandocdn.net/static/feednami/feednami-client-v1.1.js"></script>
+</head>
+
+<body>
+  <nav class="navbar">
+    <a href="javascript:startModal()"><i class="fas fa-bars"></i></a>
+    <h1 id="subreddit-header">r/</h1>
+  </nav>
+  <div id="modal">
+  </div>
+  <div class="change-r" id="changeR">
+    <div class="change-content">
+      <p>type a subreddit</p><br>
+      <input type="text" id="subreddit">
+      <br><br>
+      <a href="javascript:sGo();killModal();"><i class="fas fa-chevron-circle-right"></i></a>
+    </div>
+  </div>
+  <div class="container">
+    <div id="textarea"><img class="loader" src="loader.gif"></div>
+  </div>
+  <script>
+    let modalVisible = false;
+    let currentSubreddit = 'popular';
+    document.getElementById("modal").addEventListener('click', function() {
+      document.getElementById("modal").style.display = "none";
+      document.getElementById("changeR").style.display = "none";
+      modalVisible = false;
+    });
+
+    document.getElementById("subreddit").addEventListener("keyup", function(event) {
+      if (event.keyCode === 13 && modalVisible == true) {
+        event.preventDefault();
+        killModal();
+        sGo();
       }
     });
-  }
-function startModal() {
-  document.getElementById("modal").style.display = "block";
-  document.getElementById("changeR").style.display = "block";
-  modalVisible = true;
-}
-function killModal() {
-  document.getElementById("modal").style.display = "none";
-  document.getElementById("changeR").style.display = "none";
-  modalVisible = false;
-}
-function sGo() {
-  let sub = document.getElementById("subreddit").value;
-  currentSubreddit = sub;
-  document.getElementById("textarea").innerHTML = "<img class = 'loader' src = 'loader.gif'>";
-  loadSubreddit();
-}
+    const textarea = document.getElementById('textarea');
 
-loadSubreddit();
-    </script>
-  </body>
+    function loadSubreddit() {
+      document.getElementById("subreddit-header").innerText = "r/" + currentSubreddit;
+      let url = 'https://www.reddit.com/r/' + currentSubreddit + '/.rss';
+      feednami.load(url)
+        .then(feed => {
+          textarea.innerHTML = "";
+          let i = 1;
+          while (i < 7) {
+            let entries = feed["entries"];
+            let cardContent = entries[i];
+            let cardDiv = document.createElement("DIV");
+            let cardTitle = document.createElement("H3");
+            let divider = document.createElement("DIV");
+            let cardDescription = document.createElement("P");
+            cardDescription.className = "card-description";
+            divider.className = "card-divider";
+            cardDiv.className = "card";
+            cardTitle.innerHTML = cardContent.title;
+            cardTitle.className = "card-title";
+            cardDescription.innerHTML = cardContent.description;
+            cardDiv.appendChild(cardTitle);
+            cardDiv.appendChild(divider);
+            cardDiv.appendChild(cardDescription);
+            textarea.appendChild(cardDiv);
+            i++
+          }
+        });
+    }
+
+    function startModal() {
+      document.getElementById("modal").style.display = "block";
+      document.getElementById("changeR").style.display = "block";
+      modalVisible = true;
+    }
+
+    function killModal() {
+      document.getElementById("modal").style.display = "none";
+      document.getElementById("changeR").style.display = "none";
+      modalVisible = false;
+    }
+
+    function sGo() {
+      let sub = document.getElementById("subreddit").value;
+      currentSubreddit = sub;
+      document.getElementById("textarea").innerHTML = "<img class = 'loader' src = 'loader.gif'>";
+      loadSubreddit();
+    }
+
+    loadSubreddit();
+  </script>
+</body>
+
 </html>
