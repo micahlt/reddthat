@@ -7,6 +7,8 @@
 
 A Reddit client for those who like things simply.
 
+[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-white.svg)](https://snapcraft.io/reddthat)
+
 ## Installing ReddThat
 
 ReddThat (beta) is available now on the Snap Store!  You can download it at https://snapcraft.io/reddthat or use the following terminal commands:
