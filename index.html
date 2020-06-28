@@ -11,6 +11,10 @@
 </head>
 
 <body>
+  <div id="offlineImg">
+    <img src="server-down.svg" alt="Offline"><br><br>
+    <h2>looks like you're offline</h2>
+  </div>
   <nav class="navbar">
     <a href="javascript:startModal()"><i class="fas fa-bars"></i></a>
     <h1 id="subreddit-header">r/</h1>
@@ -26,7 +30,7 @@
     </div>
   </div>
   <div class="container">
-    <div id="textarea"><img class="loader" src="loader.gif"></div>
+    <div id="textarea"><img class="loader" src="loader.gif" id="loaderGif"></div>
   </div>
   <script>
     let modalVisible = false;
@@ -44,9 +48,15 @@
         sGo();
       }
     });
+
     const textarea = document.getElementById('textarea');
 
     function loadSubreddit() {
+      if (!navigator.onLine) {
+        document.getElementById("offlineImg").style.display = "block";
+        document.getElementById("loaderGif").style.display = "none";
+        document.getElementById("subreddit-header").innerText = "offline";
+      }
       document.getElementById("subreddit-header").innerText = "r/" + currentSubreddit;
       let url = 'https://www.reddit.com/r/' + currentSubreddit + '/.rss';
       feednami.load(url)
@@ -72,6 +82,11 @@
             textarea.appendChild(cardDiv);
             i++
           }
+        }).catch(err => {
+          document.getElementById("offlineImg").style.display = "block";
+          document.getElementById("loaderGif").style.display = "none";
+          document.getElementById("subreddit-header").innerText = "offline";
+          document.getElementsByClassName("navbar")[0].style.backgroundColor = "#293144";
         });
     }
 
